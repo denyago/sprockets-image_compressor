@@ -22,6 +22,7 @@ module Sprockets
         def initialize(binary_name)
           @binary_name = binary_name
         end
+      end
 
       private
 
