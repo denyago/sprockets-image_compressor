@@ -18,6 +18,8 @@ The gem ships with a Railtie which will automatically register the compressor pr
 
 If the environment doesn't have pngcrush and/or jpegoptim installed, the gem will fall back on binaries packaged with the gem. Currently, only 32bit and 64bit linux binaries are included. Pull requests welcome for other architectures!
 
+If falbacks not work - there is a buildpack for those binaries as well. https://github.com/bobbus/image-optim-buildpack
+
 ## Gotchas
 
 If you have other sprockets processors registered for images, e.g. `sprockets-webp`, the relative order that they are required can matter. Please load `sprockets-image_compressor` _before_ the others:
