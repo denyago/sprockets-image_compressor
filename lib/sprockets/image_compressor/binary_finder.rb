@@ -8,17 +8,20 @@ module Sprockets
       attr_reader :binary_name
 
       def path
-        try_system_binary or try_vendored_binaries or raise NotFound
+        try_system_binary or try_vendored_binaries or raise NotFound.new(binary_name)
       end
 
       class NotFound < StandardError
         def message
           """
-            Can't find an installed version of #{binary_name}, and none of the vendored binaries seem to work.
-            Please install #{binary_name}, or open an issue on the project page at https://github.com/botandrose/sprockets-image_compressor
+            Can't find an installed version of #{@binary_name}, and none of the vendored binaries seem to work.
+            Please install #{@binary_name}, or open an issue on the project page at https://github.com/botandrose/sprockets-image_compressor
           """
         end
-      end
+
+        def initialize(binary_name)
+          @binary_name = binary_name
+        end
 
       private
 
