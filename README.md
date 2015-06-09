@@ -26,7 +26,10 @@ Valid strategies are `[nil, :conservative, :aggressive]`
 
 If the environment doesn't have pngcrush and/or jpegoptim installed, the gem will fall back on binaries packaged with the gem. Currently, only 32bit and 64bit linux binaries are included. Pull requests welcome for other architectures!
 
-If fallbacks not work - there is a buildpack for those binaries as well. https://github.com/bobbus/image-optim-buildpack
+If fallbacks not work - there is a buildpack for those binaries as well:
+
+- https://github.com/bobbus/image-optim-buildpack
+- https://github.com/jayzes/heroku-buildpack-pngquant
 
 ## Gotchas
 

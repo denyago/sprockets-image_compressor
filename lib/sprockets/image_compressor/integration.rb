@@ -8,7 +8,7 @@ module Sprockets
         env.register_postprocessor 'image/png', :png_compressor do |context, data|
           compressor = case ImageCompressor.strategy
                        when :conservative then PngCompressor
-                       when :aggressive then PngCompressor
+                       when :aggressive then PngLossyCompressor
                        else PassThroughCompressor
                        end
           compress compressor, context, data
