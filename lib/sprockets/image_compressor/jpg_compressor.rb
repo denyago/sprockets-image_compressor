@@ -17,8 +17,6 @@ module Sprockets
           out = `#{binary_path} --strip-all #{file.path} 2>&1`
           compressed_jpg_data = IO.binread(file.path)
         end
-
-        log_compression_ratio content, compressed_jpg_data
         compressed_jpg_data
       end
     end
