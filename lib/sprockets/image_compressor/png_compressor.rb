@@ -19,6 +19,8 @@ module Sprockets
           compressed_png_data = IO.binread(out_file_path)
           File.unlink out_file_path
         end
+
+        log_compression_ratio content, compressed_png_data
         compressed_png_data
 
       rescue Errno::ENOENT => e
