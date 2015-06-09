@@ -1,6 +1,7 @@
 require "sprockets/image_compressor/version"
 require "sprockets/image_compressor/binary_finder"
 require "sprockets/image_compressor/png_compressor"
+require "sprockets/image_compressor/png_lossy_compressor"
 require "sprockets/image_compressor/jpg_compressor"
 require "sprockets/image_compressor/jpg_lossy_compressor"
 require "sprockets/image_compressor/pass_through_compressor"
