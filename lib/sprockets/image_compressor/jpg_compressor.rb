@@ -7,6 +7,10 @@ module Sprockets
         @name = "jpegoptim"
       end
 
+      def command_options
+        '--strip-all'
+      end
+
       def compress(content)
         compressed_jpg_data = ""
         Tempfile.open ["file", ".jpg"] do |file|
@@ -14,7 +18,7 @@ module Sprockets
           file.write content
           file.close
 
-          out = `#{binary_path} --strip-all #{file.path} 2>&1`
+          out = `#{binary_path} #{command_options} #{file.path} 2>&1`
           compressed_jpg_data = IO.binread(file.path)
         end
         compressed_jpg_data

@@ -9,6 +9,10 @@ module Sprockets
       def binary_path
         @binary_path ||= BinaryFinder.new(@name).path
       end
+
+      def command_options
+        ''
+      end
     end
 
   end

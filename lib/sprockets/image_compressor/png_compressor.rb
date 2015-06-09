@@ -15,7 +15,7 @@ module Sprockets
           in_file.write content
           in_file.close
 
-          out = `#{binary_path} #{in_file.path} #{out_file_path} 2>&1`
+          out = `#{binary_path} #{command_options} #{in_file.path} #{out_file_path} 2>&1`
           compressed_png_data = IO.binread(out_file_path)
           File.unlink out_file_path
         end

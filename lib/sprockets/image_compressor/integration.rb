@@ -6,20 +6,32 @@ module Sprockets
 
         env.register_mime_type 'image/png', '.png'
         env.register_postprocessor 'image/png', :png_compressor do |context, data|
-          PngCompressor.new.compress(data).tap do |after|
-            log_compression_ratio(context, data.size, after.size)
-          end
+          compressor = case ImageCompressor.strategy
+                       when :conservative then PngCompressor
+                       when :aggressive then PngCompressor
+                       else PassThroughCompressor
+                       end
+          compress compressor, context, data
         end
 
         env.register_mime_type 'image/jpeg', '.jpg'
         env.register_postprocessor 'image/jpeg', :jpg_compressor do |context, data|
-          JpgCompressor.new.compress(data).tap do |after|
-            log_compression_ratio(context, data.size, after.size)
-          end
+          compressor = case ImageCompressor.strategy
+                       when :conservative then JpgCompressor
+                       when :aggressive then JpgLossyCompressor
+                       else PassThroughCompressor
+                       end
+          compress compressor, context, data
         end
       end
 
       private
+
+      def self.compress(compressor, context, data)
+        compressor.new.compress(data).tap do |after|
+          log_compression_ratio(context, data.size, after.size)
+        end
+      end
 
       def self.log_compression_ratio(context, before, after)
         ratio = 100 - (after.to_f / before.to_f) * 100

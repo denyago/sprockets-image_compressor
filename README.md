@@ -14,11 +14,19 @@ gem 'sprockets-image_compressor'
 
 The gem ships with a Railtie which will automatically register the compressor preprocessors.
 
+To change strategy to lossy, add to your `config/initializers/assets.rb`:
+
+```ruby
+Sprockets::ImageCompressor.strategy = :aggressive
+```
+
+Valid strategies are `[nil, :conservative, :aggressive]`
+
 ## Now with vendored binary fallbacks / Heroku support!
 
 If the environment doesn't have pngcrush and/or jpegoptim installed, the gem will fall back on binaries packaged with the gem. Currently, only 32bit and 64bit linux binaries are included. Pull requests welcome for other architectures!
 
-If falbacks not work - there is a buildpack for those binaries as well. https://github.com/bobbus/image-optim-buildpack
+If fallbacks not work - there is a buildpack for those binaries as well. https://github.com/bobbus/image-optim-buildpack
 
 ## Gotchas
 
